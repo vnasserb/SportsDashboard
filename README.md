@@ -2,7 +2,8 @@
 
 ## Overview
 
-This repository contains a set of Python functions for web scraping sports data related to soccer, basketball, and hockey. Additionally, it includes a Streamlit web application that utilizes these functions to create an interactive dashboard for displaying sports statistics and information.
+This repository contains a set of Python functions for web scraping sports data related to soccer, basketball, and hockey from https://www.sports-reference.com. 
+Additionally, it includes a Streamlit web application that uses some of these functions to create an interactive dashboard for displaying sports statistics and information.
 
 ## Features
 
@@ -38,19 +39,21 @@ pip install -r requirements.txt
 1. Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/sports-data-dashboard.git
+git clone https://github.com/vnasserb/SportsDashboard.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd sports-data-dashboard
+cd SportsDashboard
 ```
 
 3. Run the Streamlit app:
 
 ```bash
-streamlit run app.py
+streamlit run 1/Soccer.py
+streamlit run 2/NBA.py
+streamlit run 3/NHL.py
 ```
 
 This will launch the web application in your default browser.
@@ -59,18 +62,7 @@ This will launch the web application in your default browser.
 
 You can access a live demo of the app [here](#) (replace with the actual link once deployed).
 
-## Contributing
-
-If you'd like to contribute to this project, please follow the guidelines outlined in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
 - Special thanks to the Streamlit team for providing an excellent framework for building interactive web applications with Python.
-
----
-
-Feel free to customize this README to provide more specific details about your web scraping functions and the sports data you are targeting. Additionally, update the demo link and any other placeholders with the actual information once the project is deployed. Good luck with your sports data dashboard!
