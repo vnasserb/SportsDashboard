@@ -1,0 +1,120 @@
+def getSchedule(season):
+  html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_games.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "games"})
+  rows = table.find_all("tr")
+  matchesList = []
+
+  for row in rows[1:]:
+    rowData = row.find_all("td")
+    matchDict = {}
+
+    for data in rowData:
+      if data['data-stat'] == 'box_score_text':
+        url = data.findChildren("a")[0]['href'] if len(data.findChildren("a")) > 0 else ''
+        matchDict[data['data-stat']] = url
+      else:
+        matchDict[data['data-stat']] = data.text
+
+      matchesList.append(matchDict)
+
+  return matchesList
+
+def getTeamsURLs(season):
+  html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_games.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "games"})
+  rows = table.find_all("tr")
+  teams = [list(filter(lambda x: x['data-stat'] == 'home_team_name', row.find_all("td") )) for row in rows[1:]]
+  teamsDict = {team[0].text: team[0].findChildren("a")[0]['href'] for team in teams}
+
+  return teamsDict
+
+def getTeamRoster(season, teamCode):
+  html = urlopen(f"https://www.hockey-reference.com/teams/{teamCode}/{season}.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "roster"})
+
+  return list(map(lambda x: {**{'number': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
+
+def getTeamH2HResults(season, teamCode):
+  html = urlopen(f"https://www.hockey-reference.com/teams/{teamCode}/{season}_headtohead.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "head2head"})
+  rows = table.find_all("tr")[1:]
+  opponentsDict = {}
+
+  for row in rows:
+    rowData = row.find_all("td")
+    teamName = rowData[0].text
+    opponentsDict[teamName] = {data['data-stat']: data.text for data in rowData[1:]}
+
+  return opponentsDict
+
+def getTeamGamelog(season, teamCode):
+  html = urlopen(f"https://www.hockey-reference.com/teams/{teamCode}/{season}_gamelog.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "tm_gamelog_rs"})
+
+  return list(map(lambda x: {data['data-stat']: data.text for data in x.find_all("td")} , table.find_all("tr")[2:]))
+
+def getInjuries():
+  html = urlopen(f"https://www.hockey-reference.com/friv/injuries.cgi")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "injuries"})
+
+  return list(map(lambda x: {**{'player': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
+
+def getSkatersStatistics(season):
+  html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_skaters.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "stats"})
+
+  return list(map(lambda x: {**{'player': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[2:]))
+
+def getGoalieStatistics(season):
+  html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_goalies.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "stats"})
+
+  return list(map(lambda x: {**{'player': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
+
+def getSkatersBasicStatistics(season):
+  html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_skaters.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "stats"})
+
+  return list(map(lambda x: {**{'player': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
+
+def getSkatersAdvancedStatistics(season):
+  html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_skaters-advanced.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "stats_adv_rs"})
+
+  return list(map(lambda x: {**{'player': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
+
+def getCaptains(season):
+  html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_captains.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "captains"})
+
+  return list(map(lambda x: {**{'team': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
+
+def getSkaterShootouts(season):
+  html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_penalty-shots.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  table = bs.find("table", {"id": "penalty_shots"})
+  return table
+  return list(map(lambda x: {**{'team': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
