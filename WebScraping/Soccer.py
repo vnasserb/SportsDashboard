@@ -262,7 +262,6 @@ def getMatchesURLs(leagueId, leagueName):
 
     return matchURLs
 
-@st.cache_data
 def getLeagueIds():
     html = urlopen(f"https://fbref.com/en/comps/")
     bs = BeautifulSoup(html, 'html.parser')
