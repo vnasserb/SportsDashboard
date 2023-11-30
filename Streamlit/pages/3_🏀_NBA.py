@@ -35,7 +35,6 @@ def getFullSeason(season):
             monthSchedule = getNBASchedule(season, month)
             fullSchedule += monthSchedule
         except:
-            print(month)
             continue
 
     orderedSchedule = sorted(fullSchedule, key=lambda x: datetime.strptime(x['Date'], '%Y-%m-%d'))
