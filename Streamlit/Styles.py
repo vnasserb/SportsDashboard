@@ -55,3 +55,8 @@ def writeColumns(object, *args):
                                title=args[i][1]['title'], text=args[i][1]['text'])
                 st.title(args[i][1]['title'])
                 st.plotly_chart(figure)
+
+    elif object == "image":
+        for i in range(len(columns)):
+            with columns[i]:
+                st.image(args[i])
