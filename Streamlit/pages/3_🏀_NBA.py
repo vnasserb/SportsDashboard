@@ -185,7 +185,7 @@ def main():
         teams = getSeasonTeams(selectedSeason)
         teamStats = getSeasonTeamStats(selectedSeason)
         standings = getStandings(selectedSeason)
-        print(seasonSchedule)
+        st.dataframe(seasonSchedule)
         selectedTeam = st.selectbox(label="Select a Team", options=list(teams.keys()), index=None)
 
         if selectedTeam:
