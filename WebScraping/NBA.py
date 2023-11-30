@@ -5,16 +5,16 @@ import pandas as pd
 def getConferenceStandings(season):
   def tableToJSON(rows):
 
-  jsonList = []
-
-  for row in rows:
-    rowData = row.find_all("td")
-    team = row.find("th").text.split("\xa0")[0].strip()
-    dataJson = {data['data-stat']: data.text for data in rowData}
-    dataJson['team'] = team
-    jsonList.append(dataJson)
-
-  return jsonList
+    jsonList = []
+  
+    for row in rows:
+      rowData = row.find_all("td")
+      team = row.find("th").text.split("\xa0")[0].strip()
+      dataJson = {data['data-stat']: data.text for data in rowData}
+      dataJson['team'] = team
+      jsonList.append(dataJson)
+  
+    return jsonList
   
   html = urlopen(f"https://www.basketball-reference.com/leagues/NBA_{season}.html")
   bs = BeautifulSoup(html, 'html.parser')
