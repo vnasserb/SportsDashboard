@@ -157,7 +157,7 @@ def main():
                 completedMatches = completedMatches[(completedMatches['home_team_name'] != selectedTeam)]
             else:
                 pass
-            st.dataframe(standings)
+
             makeConferenceTable(standings, selectedTeam)
             makeLastMatchesTable(completedMatches)
             makePercentagesTablesAndMetrics(completedMatches, selectedTeam)
