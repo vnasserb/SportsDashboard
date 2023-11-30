@@ -15,22 +15,22 @@ from Styles import *
 
 @st.cache_data
 def getSeasonTeamStats(season):
-    stats = getTeamStats(season)
+    stats = getNHLTeamStats(season)
     return stats
 
 @st.cache_data
 def getSeasonTeams(season):
-    urls = getTeamsURLs(season)
+    urls = getNHLTeamsURLs(season)
     return urls
 
 @st.cache_data
 def getStandings(season):
-    tables = getConferenceStandings(season)
+    tables = getNHLConferenceStandings(season)
     return tables
 
 @st.cache_data
 def getFullSeason(season):
-    return pd.DataFrame(getSchedule(season))
+    return pd.DataFrame(getNHLSchedule(season))
 
 def makeConferenceTable(standings, selectedTeam):
 
