@@ -25,3 +25,9 @@ st.write("**Currently, we support soccer, basketball and Ice Hockey**")
 st.header("Soccer")
 writeColumns('image', 'https://cdn.ssref.net/req/202311071/tlogo/fb/9.png', 'https://cdn.ssref.net/req/202311071/tlogo/fb/12.png',
             'https://cdn.ssref.net/req/202311071/tlogo/fb/20.png', 'https://cdn.ssref.net/req/202311071/tlogo/fb/24.png')
+
+st.header("Basketball")
+writeColumns('image', "https://cdn.ssref.net/req/202311071/tlogo/bbr/NBA-2024.png")
+
+st.header("Hockey")
+writeColumns('image', "https://cdn.ssref.net/req/202311071/tlogo/hr/NHL-2024.png")
