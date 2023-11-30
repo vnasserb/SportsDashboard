@@ -7,31 +7,8 @@ import json
 import matplotlib.pyplot as plt
 import plotly.express as px
 from datetime import datetime
-
-def highlight_positive(val):
-    if val == 'W':
-        color = 'green'
-        text = 'white'
-    elif val == 'L':
-        color = 'red'
-        text = 'white'
-    else:
-        color = 'white'
-        text = 'black'
-    return f'background-color: {color}; color: {text}; text-align: center;'
-
-def writeColumns(object, *args):
-    columns = st.columns(len(args))
-    if object == 'dataframe':
-        for i in range(len(columns)):
-            with columns[i]:
-                st.write(args[i][0])
-                st.dataframe(data=pd.DataFrame(args[i][1], columns=['Quantity', 'Percentage']), hide_index=True)
-
-    elif object == 'metric':
-        for i in range(len(columns)):
-            with columns[i]:
-                st.metric(label=args[i]['label'], value=args[i]['value'])
+from NHL import *
+from Styles import *
 
 @st.cache_data
 def getSeasonTeamStats(season):
