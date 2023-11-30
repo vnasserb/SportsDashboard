@@ -9,41 +9,6 @@ import plotly.express as px
 from datetime import datetime
 from NBA import *
 
-
-def highlight_positive(val):
-    if val == 'W':
-        color = 'green'
-        text = 'white'
-    elif val == 'L':
-        color = 'red'
-        text = 'white'
-    else:
-        color = 'white'
-        text = 'black'
-    return f'background-color: {color}; color: {text}; text-align: center;'
-
-def writeColumns(object, *args):
-    columns = st.columns(len(args))
-    if object == 'dataframe':
-        for i in range(len(columns)):
-            with columns[i]:
-                st.write(args[i][0])
-                st.dataframe(data=pd.DataFrame(args[i][1], columns=['Quantity', 'Percentage']), hide_index=True)
-
-    elif object == 'metric':
-        for i in range(len(columns)):
-            with columns[i]:
-                st.metric(label=args[i]['label'], value=args[i]['value'])
-
-    elif object == "Bar plot":
-        for i in range(len(columns)):
-            with columns[i]:
-                figure = createBarChart(data=args[i][0], x_axis=args[i][1]['x_axis'], y_axis=args[i][1]['y_axis'],
-                               title=args[i][1]['title'], text=args[i][1]['text'])
-                st.title(args[i][1]['title'])
-                st.plotly_chart(figure)
-
-
 @st.cache_data
 def getSeasonTeamStats(season):
     stats = getTeamStats(season)
