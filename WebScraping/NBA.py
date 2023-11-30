@@ -1,4 +1,9 @@
-def tableToJSON(rows):
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import pandas as pd
+
+def getConferenceStandings(season):
+  def tableToJSON(rows):
 
   jsonList = []
 
@@ -10,8 +15,7 @@ def tableToJSON(rows):
     jsonList.append(dataJson)
 
   return jsonList
-
-def getConferenceStandings(season):
+  
   html = urlopen(f"https://www.basketball-reference.com/leagues/NBA_{season}.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -24,6 +28,27 @@ def getConferenceStandings(season):
   }
 
   return standings
+
+def getTeams(season):
+    html = urlopen(f"https://www.basketball-reference.com/leagues/NBA_{season}.html")
+    bs = BeautifulSoup(html, 'html.parser')
+
+    tableEast = bs.find("table", {"id": "confs_standings_E"})
+    tableWest = bs.find("table", {"id": "confs_standings_W"})
+
+    tables = [tableEast, tableWest]
+    teams = {}
+
+    for table in tables:
+        rows = table.find_all("tr")[1:]
+
+        for row in rows:
+            team = row.text.split('(')[0][:-1]
+            teamHTML = row.findChildren("a")[0]['href']
+
+            teams[team] = teamHTML
+
+    return teams
 
 def getTeamStats(season):
   html = urlopen(f"https://www.basketball-reference.com/leagues/NBA_{season}.html")
@@ -107,6 +132,9 @@ def getSchedule(season, month):
   for row in rows[1:]:
     rowData = row.find_all("td")
     matchDict = {}
+
+    date = row.find("th").text
+    matchDict['Date'] = datetime.strptime(date, "%a, %b %d, %Y").strftime("%Y-%m-%d")
 
     for data in rowData:
       if data['data-stat'] == 'box_score_text':
