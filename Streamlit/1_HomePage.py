@@ -8,7 +8,7 @@ import plotly.express as px
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from datetime import datetime
-from WebScraping.Soccer import *
+from SportsDashboard.WebScraping.Soccer import *
 from NHL import *
 from NBA import *
 from Styles import *
