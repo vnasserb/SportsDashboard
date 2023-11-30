@@ -7,6 +7,9 @@ import json
 import matplotlib.pyplot as plt
 import plotly.express as px
 from datetime import datetime
+import sys
+sys.path.append("WebScraping")
+
 from NBA import *
 from Styles import *
 
