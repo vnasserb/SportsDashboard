@@ -32,7 +32,7 @@ def getFullSeason(season):
 
     for month in months:
         try:
-            monthSchedule = getSchedule(season, month)
+            monthSchedule = getNBASchedule(season, month)
             fullSchedule += monthSchedule
         except:
             continue
