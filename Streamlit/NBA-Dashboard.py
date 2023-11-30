@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 from datetime import datetime
 from NBA import *
+from Styles import *
 
 @st.cache_data
 def getSeasonTeamStats(season):
