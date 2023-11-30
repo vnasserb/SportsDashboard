@@ -186,7 +186,7 @@ def main():
         teams = getSeasonTeams(selectedSeason)
         teamStats = getSeasonTeamStats(selectedSeason)
         standings = getStandings(selectedSeason)
-        st.dataframe(seasonSchedule)
+        st.dataframe(getNBASchedule(2024, 'november'))
         selectedTeam = st.selectbox(label="Select a Team", options=list(teams.keys()), index=None)
 
         if selectedTeam:
