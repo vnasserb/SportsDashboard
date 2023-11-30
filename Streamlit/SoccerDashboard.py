@@ -7,6 +7,7 @@ import json
 import matplotlib.pyplot as plt
 import plotly.express as px
 from datetime import datetime
+from Soccer import *
 
 @st.cache_data
 def createSeasonOptions(seasons, slashedSeasons):
