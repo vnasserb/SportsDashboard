@@ -121,7 +121,7 @@ def getPlayersStats(season):
 
   return list(map(lambda x: {data['data-stat']: data.text for data in x.find_all("td")}, table.find_all("tr")[1:]))
 
-def getSchedule(season, month):
+def getNBASchedule(season, month):
   html = urlopen(f"https://www.basketball-reference.com/leagues/NBA_{season}_games-{month}.html")
   bs = BeautifulSoup(html, 'html.parser')
 
