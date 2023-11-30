@@ -2,7 +2,7 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import pandas as pd
 
-def getSchedule(season):
+def getNHLSchedule(season):
   html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_games.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -27,7 +27,7 @@ def getSchedule(season):
 
   return matchesList
 
-def getConferenceStandings(season):
+def getNHLConferenceStandings(season):
   def tableToJSON(rows):
 
     jsonList = []
@@ -58,7 +58,7 @@ def getConferenceStandings(season):
 
   return standings
 
-def getTeamsURLs(season):
+def getNHLTeamsURLs(season):
   html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_games.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -69,7 +69,7 @@ def getTeamsURLs(season):
 
   return teamsDict
 
-def getTeamRoster(season, teamCode):
+def getNHLTeamRoster(season, teamCode):
   html = urlopen(f"https://www.hockey-reference.com/teams/{teamCode}/{season}.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -77,7 +77,7 @@ def getTeamRoster(season, teamCode):
 
   return list(map(lambda x: {**{'number': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
 
-def getTeamH2HResults(season, teamCode):
+def getNHLTeamH2HResults(season, teamCode):
   html = urlopen(f"https://www.hockey-reference.com/teams/{teamCode}/{season}_headtohead.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -92,7 +92,7 @@ def getTeamH2HResults(season, teamCode):
 
   return opponentsDict
 
-def getTeamGamelog(season, teamCode):
+def getNHLTeamGamelog(season, teamCode):
   html = urlopen(f"https://www.hockey-reference.com/teams/{teamCode}/{season}_gamelog.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -100,7 +100,7 @@ def getTeamGamelog(season, teamCode):
 
   return list(map(lambda x: {data['data-stat']: data.text for data in x.find_all("td")} , table.find_all("tr")[2:]))
 
-def getInjuries():
+def getNHLInjuries():
   html = urlopen(f"https://www.hockey-reference.com/friv/injuries.cgi")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -108,7 +108,7 @@ def getInjuries():
 
   return list(map(lambda x: {**{'player': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
 
-def getSkatersStatistics(season):
+def getNHLSkatersStatistics(season):
   html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_skaters.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -116,7 +116,7 @@ def getSkatersStatistics(season):
 
   return list(map(lambda x: {**{'player': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[2:]))
 
-def getGoalieStatistics(season):
+def getNHLGoalieStatistics(season):
   html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_goalies.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -124,7 +124,7 @@ def getGoalieStatistics(season):
 
   return list(map(lambda x: {**{'player': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
 
-def getSkatersBasicStatistics(season):
+def getNHLSkatersBasicStatistics(season):
   html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_skaters.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -132,7 +132,7 @@ def getSkatersBasicStatistics(season):
 
   return list(map(lambda x: {**{'player': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
 
-def getSkatersAdvancedStatistics(season):
+def getNHLSkatersAdvancedStatistics(season):
   html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_skaters-advanced.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -140,7 +140,7 @@ def getSkatersAdvancedStatistics(season):
 
   return list(map(lambda x: {**{'player': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
 
-def getCaptains(season):
+def getNHLCaptains(season):
   html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_captains.html")
   bs = BeautifulSoup(html, 'html.parser')
 
@@ -148,7 +148,7 @@ def getCaptains(season):
 
   return list(map(lambda x: {**{'team': x.find("th").text}, **{data['data-stat']: data.text for data in x.find_all("td")} }, table.find_all("tr")[1:]))
 
-def getSkaterShootouts(season):
+def getNHLSkaterShootouts(season):
   html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_penalty-shots.html")
   bs = BeautifulSoup(html, 'html.parser')
 
