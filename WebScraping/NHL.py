@@ -1,3 +1,7 @@
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import pandas as pd
+
 def getSchedule(season):
   html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_games.html")
   bs = BeautifulSoup(html, 'html.parser')
@@ -7,6 +11,7 @@ def getSchedule(season):
   matchesList = []
 
   for row in rows[1:]:
+    date = row.find("th").text
     rowData = row.find_all("td")
     matchDict = {}
 
@@ -17,9 +22,41 @@ def getSchedule(season):
       else:
         matchDict[data['data-stat']] = data.text
 
+      matchDict["Date"] = date
       matchesList.append(matchDict)
 
   return matchesList
+
+def getConferenceStandings(season):
+  def tableToJSON(rows):
+
+    jsonList = []
+
+    for row in rows:
+      try:
+        rowData = row.find_all("td")
+        team = row.find("th").findChildren("a")[0].text.split("\xa0")[0].strip()
+        dataJson = {data['data-stat']: data.text for data in rowData}
+        dataJson['team'] = team
+        jsonList.append(dataJson)
+
+      except AttributeError:
+        continue
+
+    return jsonList
+
+  html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}.html")
+  bs = BeautifulSoup(html, 'html.parser')
+
+  tableEast = bs.find("table", {"id": "standings_EAS"})
+  tableWest = bs.find("table", {"id": "standings_WES"})
+
+  standings = {
+      'East': tableToJSON(tableEast.find_all("tr")[2:]),
+      'West': tableToJSON(tableWest.find_all("tr")[2:]),
+  }
+
+  return standings
 
 def getTeamsURLs(season):
   html = urlopen(f"https://www.hockey-reference.com/leagues/NHL_{season}_games.html")
