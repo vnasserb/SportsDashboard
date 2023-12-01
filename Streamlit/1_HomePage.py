@@ -17,6 +17,7 @@ from NHL import *
 from NBA import *
 from Styles import *
 
+st.set_page_config(page_title="Home Page", page_icon="🏠")
 st.title("Sports Dashboard")
 
 st.write("**Use this cool dashboard to check information about many sports**")
