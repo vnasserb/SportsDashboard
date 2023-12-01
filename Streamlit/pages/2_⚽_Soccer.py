@@ -222,6 +222,11 @@ def main():
                         for i in range(len(teamStats['Against'])) if teamStats['Against'][i]['Date'] != ''
                     ]
 
+                    if type == "Home":
+                        matches = list(filter(lambda x: x['Home'] == team, matches))
+                    elif type == "Away":
+                        matches = list(filter(lambda x: x['Home'] != team, matches))
+
                     makeLeagueTable(leagueTables, type, team, league)
 
                     st.markdown("---")
