@@ -47,7 +47,7 @@ writeColumns('image', "https://cdn.ssref.net/req/202311071/tlogo/bbr/NBA-2024.pn
 st.markdown("---")
 
 st.header("Hockey")
-st.text("Currently, this dashboard only has information about the NHL.")
+st.write("Currently, this dashboard only has information about the NHL.")
 writeColumns('image', "https://cdn.ssref.net/req/202311071/tlogo/hr/NHL-2024.png")
 
 st.markdown("---")
