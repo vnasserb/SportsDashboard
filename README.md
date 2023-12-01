@@ -4,6 +4,7 @@
 
 This repository contains a set of Python functions for web scraping sports data related to soccer, basketball, and hockey from https://www.sports-reference.com. 
 Additionally, it includes a Streamlit web application that uses some of these functions to create an interactive dashboard for displaying sports statistics and information.
+The folder "WebScraping" contains all the functions developed for the construction of this repository and the folder "Streamlit" contains the pages of the web app: the first one is the home page, followed by Soccer, NBA and NHL.
 
 ## Features
 
@@ -51,18 +52,19 @@ cd SportsDashboard
 3. Run the Streamlit app:
 
 ```bash
-streamlit run 1/Soccer.py
-streamlit run 2/NBA.py
-streamlit run 3/NHL.py
+streamlit run 1_⚽_Soccer.py
+streamlit run 2_🏀_NBA.py
+streamlit run 3_🏒_NHL.py
 ```
 
 This will launch the web application in your default browser.
 
 ## Demo
 
-You can access a live demo of the app [here](#) (replace with the actual link once deployed).
+You can access a live demo of the app [SportsDashboard](https://sportsdashboard.streamlit.app).
 
 
 ## Acknowledgments
 
 - Special thanks to the Streamlit team for providing an excellent framework for building interactive web applications with Python.
+- Special thanks to the Sports Reference team for developing an amazing website filled with the latest sports information.
