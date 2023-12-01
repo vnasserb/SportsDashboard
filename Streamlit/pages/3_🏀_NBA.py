@@ -177,7 +177,7 @@ def main():
     st.set_page_config(page_title="NBA")
 
     st.title("NBA Dashboard")
-    st.header("Select a Season and a team and use this dashboard to check all the team information for this team at the selected season")
+    st.text("Select a Season and a team and use this dashboard to check all the team information for this team at the selected season")
 
     today = datetime.today()
     currentYear = today.year if today.month < 8 else today.year + 1
