@@ -117,7 +117,7 @@ def makeMetrics(selectedTeam, teamScored, teamConceded, teamTotal):
 
 def main():
 
-    st.set_page_config(page_title="NHL")
+    st.set_page_config(page_title="NHL", page_icon="🏒")
 
     st.title("NHL Dashboard")
     st.text("Select a Season and a team and use this dashboard to check all the team information for this team at the selected season")
