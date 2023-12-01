@@ -174,7 +174,7 @@ def makeMetrics(selectedTeam, teamStats, teamScored, teamConceded, teamTotal):
 
 def main():
 
-    st.set_page_config(page_title="NBA")
+    st.set_page_config(page_title="NBA", page_icon="🏀")
 
     st.title("NBA Dashboard")
     st.text("Select a Season and a team and use this dashboard to check all the team information for this team at the selected season")
