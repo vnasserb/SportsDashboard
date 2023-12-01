@@ -62,7 +62,7 @@ def makeLastMatchesTable(completedMatches):
     df = completedMatches[
         ['Date', 'Result', 'home_team_name', 'visitor_team_name', 'home_goals', 'visitor_goals', 'Total Goals']]
 
-    df.rename({'home_team_name': 'Home', 'visitor_team_name': 'Away', 'home_goals': 'Home Goals', 'visitor_pts': 'Visitor Goals'},
+    df.rename({'home_team_name': 'Home', 'visitor_team_name': 'Away', 'home_goals': 'Home Goals', 'visitor_goals': 'Visitor Goals'},
               axis=1, inplace=True)
     df.drop_duplicates(inplace=True)
 
