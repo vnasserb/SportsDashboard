@@ -160,7 +160,7 @@ def makeLeagueTable(leagueTables, type, team, leagueName):
     st.dataframe(styled_data)
 
 def main():
-    st.set_page_config(page_title="Soccer")
+    st.set_page_config(page_title="Soccer", page_icon="⚽")
 
     st.title("Soccer Dashboard")
     st.write("Select a league and a team and use this dashboard to check all the team information for this league at the current season")
