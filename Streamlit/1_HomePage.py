@@ -32,6 +32,10 @@ writeColumns('image', 'https://cdn.ssref.net/req/202311071/tlogo/fb/24.png', 'ht
             'https://cdn.ssref.net/req/202311071/tlogo/fb/45.png', 'https://cdn.ssref.net/req/202311071/tlogo/fb/31.png',
             'https://cdn.ssref.net/req/202311071/tlogo/fb/22.png')
 
+writeColumns('image', 'https://cdn.ssref.net/req/202311071/tlogo/fb/55.png', 'https://cdn.ssref.net/req/202311071/tlogo/fb/25.png',
+            'https://cdn.ssref.net/req/202311071/tlogo/fb/62.png', 'https://cdn.ssref.net/req/202311071/tlogo/fb/70.png',
+            'https://cdn.ssref.net/req/202311071/tlogo/fb/82.png')
+
 st.header("Basketball")
 st.text("Currently, this dashboard only has information about the NBA. More leagues will be available in the future.")
 writeColumns('image', "https://cdn.ssref.net/req/202311071/tlogo/bbr/NBA-2024.png")
@@ -40,4 +44,4 @@ st.header("Hockey")
 st.text("Currently, this dashboard only has information about the NHL.")
 writeColumns('image', "https://cdn.ssref.net/req/202311071/tlogo/hr/NHL-2024.png")
 
-st.text("This dashboard is an open source tool, so check out the code at our repository [here](https://github.com/vnasserb/SportsDashboard)")
+st.write("This dashboard is an open source tool, so check out the code at our repository [here](https://github.com/vnasserb/SportsDashboard)")
